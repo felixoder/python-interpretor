@@ -2,7 +2,6 @@ const express = require("express");
 const { spawn } = require("child_process");
 const bodyParser = require("body-parser");
 const app = express();
-const path = require("path");
 
 const port = 3000;
 // Middleware to parse JSON bodies
@@ -10,7 +9,6 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 // Serve static files from the client/dist directory
-app.use(express.static(path.join(__dirname, "/client/dist")));
 
 // Route to handle compilation and execution of Python code
 app.post("/api/run-python", (req, res) => {
@@ -43,9 +41,7 @@ app.post("/api/run-python", (req, res) => {
 
 // Route to serve index.html for any other requests
 // Route to serve index.html for any other requests
-app.get('*',(req,res)=>{
-    res.sendFile(path.join(__dirname, 'client','dist','index.html'))
-  })
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
