@@ -1,10 +1,10 @@
 const express = require("express");
 const { spawn } = require("child_process");
 const bodyParser = require("body-parser");
-const path = require("path");
 const app = express();
-const port = 3000;
+const path = require("path");
 
+const port = 3000;
 // Middleware to parse JSON bodies
 app.use(express.json());
 app.use(bodyParser.json());
@@ -43,10 +43,9 @@ app.post("/api/run-python", (req, res) => {
 
 // Route to serve index.html for any other requests
 // Route to serve index.html for any other requests
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
-  });
-  
+app.get('*',(req,res)=>{
+    res.sendFile(path.join(__dirname, 'client','dist','index.html'))
+  })
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
